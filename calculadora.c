@@ -117,10 +117,48 @@ void convBCD (int valor){
         count++;
     }
 
-    printf("Resultado:\n");
+    printf("Resultado: ");
     for (int i=count-1; i>=0; i--){
         printf ("%s ", Bsc[i]);
     }
+}
+
+void complementoA2 (int valor){
+    int Comple2[16] = {0};
+    int auxvalor = valor;
+    int count = 0;
+
+    while (valor > 0){
+        Comple2[count] = valor%2;
+        valor = valor / 2;
+        count++;
+    }
+    printf("\n%d em Binario normal: ", auxvalor);
+    for (int i = 15; i>=0; i--){
+        printf("%d", Comple2[i]);
+    }
+
+    int posicaoUm;
+    for (int i = 15; i>=0; i--){
+        if (Comple2[i] == 1){
+            posicaoUm = i;
+        }
+    }
+    
+    for (int i = 15; i>posicaoUm; i--){
+        if (Comple2[i] == 0){
+            Comple2[i] = 1;
+        }
+        else if (Comple2[i] == 1){
+            Comple2[i] = 0;
+        } 
+    }  
+
+    printf("\n%d em Complemento a 2: ", auxvalor);
+    for (int i = 15; i>=0; i--){
+        printf("%d", Comple2[i]);
+    }
+    printf("\n");
 }
 
 int main (void){
@@ -132,4 +170,7 @@ int main (void){
     convOctagonal (valor);
     convHexadecimal (valor);
     convBCD (valor);
+
+    printf("\n");
+    complementoA2 (valor);
 }
