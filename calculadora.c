@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 
 void convBinario (int valor){
     int count = 0;
@@ -125,7 +124,6 @@ void convBCD (int valor){
 
 void complementoA2 (int valor){
     int Comple2[16] = {0};
-    int auxvalor = valor;
     int count = 0;
 
     while (valor > 0){
@@ -133,7 +131,7 @@ void complementoA2 (int valor){
         valor = valor / 2;
         count++;
     }
-    printf("\n%d em Binario normal: ", auxvalor);
+    printf("\nBinario normal: ");
     for (int i = 15; i>=0; i--){
         printf("%d", Comple2[i]);
     }
@@ -154,23 +152,198 @@ void complementoA2 (int valor){
         } 
     }  
 
-    printf("\n%d em Complemento a 2: ", auxvalor);
+    printf("\nComplemento a 2: ");
     for (int i = 15; i>=0; i--){
         printf("%d", Comple2[i]);
     }
     printf("\n");
 }
 
-int main (void){
-    int valor;
-    printf ("Digite o valor a ser convertido: ");
-    scanf("%d", &valor);
+void TransformandoFloat (float valor){
 
-    convBinario (valor);
-    convOctagonal (valor);
-    convHexadecimal (valor);
-    convBCD (valor);
+    int auxValor = (int)valor;
+    float DpsVirgula =  valor - auxValor;
+    
+    printf("Valor depois da virgula: %f\n", DpsVirgula);
+    int DpsVirgulaBinario[23] = {0};
+    int count = 0;
 
+    while (DpsVirgula != 0 && count <23){
+        DpsVirgula = DpsVirgula * 2;
+        int INTresultado = (int)DpsVirgula;
+        DpsVirgulaBinario[count] = INTresultado;
+        DpsVirgula = DpsVirgula - INTresultado;
+        count++;
+    }
+
+    printf("Valor fracionario da virgula em binario: ");
+    for (int i=0; i<count; i++){
+        printf("%d", DpsVirgulaBinario[i]);
+    }
     printf("\n");
-    complementoA2 (valor);
+
+
+
+    int valorAntesVIG = (int)valor;
+    if (valorAntesVIG < 0){
+        valorAntesVIG =  valorAntesVIG * (-1);
+    }
+    printf("\nValor antes da virgula: %d", valorAntesVIG);;
+    int Binario[23] = {0};
+    int count2 = 0;
+    while (valorAntesVIG > 0){
+        Binario[count2] = valorAntesVIG%2;
+        valorAntesVIG = valorAntesVIG / 2;
+        count2++;
+    }
+    
+    printf("\nValor antes da virgula em binario: ");
+    for (int i = 22; i>=0; i--){
+        printf("%d", Binario[i]);
+    }
+    printf("\n");
+
+
+
+    int bitSinal;
+    if (auxValor > 0){
+        bitSinal = 0;
+        printf("\nValor positivo, logo bit de sinal sera %d", bitSinal);
+    }
+    else{
+        bitSinal = 1;
+        printf("\nValor negativo, logo bit de sinal sera %d", bitSinal);
+    }
+    printf("\n");
+
+
+
+    int expoente = count2 - 1;
+    printf ("\nExpoente sem somar com 127: %d", expoente);
+
+    int expoenteCom127 = expoente + 127;
+    printf ("\nExpoente com 127 somado: %d", expoenteCom127);
+
+    int BinarioExp[8] = {0};
+    int countExp = 0;
+    while (expoenteCom127 > 0){
+        BinarioExp[countExp] = expoenteCom127%2;
+        expoenteCom127 = expoenteCom127 / 2;
+        countExp++;
+    }
+    printf("\nExpoente em binario: ");
+    for (int i=7; i>=0; i--){
+        printf("%d", BinarioExp[i]);
+    }
+}
+
+void TransformandoDouble (float valor){
+
+    int auxValor = (int)valor;
+    double DpsVirgula =  valor - auxValor;
+    
+    printf("Valor depois da virgula: %f\n", DpsVirgula);
+    int DpsVirgulaBinario[52] = {0};
+    int count = 0;
+
+    while (DpsVirgula != 0 && count <52){
+        DpsVirgula = DpsVirgula * 2;
+        int INTresultado = (int)DpsVirgula;
+        DpsVirgulaBinario[count] = INTresultado;
+        DpsVirgula = DpsVirgula - INTresultado;
+        count++;
+    }
+
+    printf("Valor fracionario da virgula em binario: ");
+    for (int i=0; i<count; i++){
+        printf("%d", DpsVirgulaBinario[i]);
+    }
+    printf("\n");
+
+
+
+    int valorAntesVIG = (int)valor;
+    if (valorAntesVIG < 0){
+        valorAntesVIG =  valorAntesVIG * (-1);
+    }
+    printf("\nValor antes da virgula: %d", valorAntesVIG);;
+    int Binario[52] = {0};
+    int count2 = 0;
+    while (valorAntesVIG > 0){
+        Binario[count2] = valorAntesVIG%2;
+        valorAntesVIG = valorAntesVIG / 2;
+        count2++;
+    }
+    
+    printf("\nValor antes da virgula em binario: ");
+    for (int i = 51; i>=0; i--){
+        printf("%d", Binario[i]);
+    }
+    printf("\n");
+
+
+
+    int bitSinal;
+    if (auxValor > 0){
+        bitSinal = 0;
+        printf("\nValor positivo, logo bit de sinal sera %d", bitSinal);
+    }
+    else{
+        bitSinal = 1;
+        printf("\nValor negativo, logo bit de sinal sera %d", bitSinal);
+    }
+    printf("\n");
+
+
+
+    int expoente = count2 - 1;
+    printf ("\nExpoente sem somar com 1023: %d", expoente);
+
+    int expoenteCom127 = expoente + 1023;
+    printf ("\nExpoente com 1023 somado: %d", expoenteCom127);
+
+    int BinarioExp[11] = {0};
+    int countExp = 0;
+    while (expoenteCom127 > 0){
+        BinarioExp[countExp] = expoenteCom127%2;
+        expoenteCom127 = expoenteCom127 / 2;
+        countExp++;
+    }
+    printf("\nExpoente em binario: ");
+    for (int i=10; i>=0; i--){
+        printf("%d", BinarioExp[i]);
+    }
+}
+
+
+int main (void){
+    int valor, escolha;
+    float valorF;
+
+    printf("Faca a sua escolha\n");
+    printf("(1) Converter o valor em base [2, 8 16, BSC] e Complemento a 2\n");
+    printf("(2) Convertendo valor em float e double\nEscolha: ");
+    scanf ("%d", &escolha);
+
+    if (escolha == 1){
+        printf ("Digite o valor desejado: ");
+        scanf ("%d", &valor);
+        printf ("-==-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-\n");
+        convBinario (valor);
+        convOctagonal (valor);
+        convHexadecimal (valor);
+        convBCD (valor);
+
+        printf("\n");
+        complementoA2 (valor);
+        printf ("-==-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-\n");
+    }
+    else {
+        printf ("Digite o valor desejado: ");
+        scanf ("%f", &valorF);
+        printf ("-==-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-\n");
+        TransformandoFloat (valorF);
+        printf ("\n-==-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-\n");
+        TransformandoDouble (valorF);
+    }   
 }
