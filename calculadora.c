@@ -1,3 +1,13 @@
+//Criado 29 de Agosto de 2024
+//Autor Thiago Manguinho Rodrigues de Sousa
+
+//Questão 1 - Data: 29/08/2025 || Horário: 23:15:59
+//Questão 2 - Data: 30/08/2024 || Horário: 14:39:07
+//QUestão 3 - Data: 30/08/2024 || Horário: 18:37:18
+
+//commit 4 - Data: 30/08/2024 || Horário: 18:53:30
+
+
 #include <stdio.h>
 
 void convBinario (int valor){
